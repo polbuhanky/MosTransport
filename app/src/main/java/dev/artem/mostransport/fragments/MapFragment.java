@@ -154,7 +154,6 @@ public class MapFragment extends Fragment implements ClusterListener, MapObjectT
         streetReference = mDatabase.child("streets");
         genericTypeIndicator = new GenericTypeIndicator<ArrayList<Mark>>() {};
         streetsGenericTypeIndicator = new GenericTypeIndicator<ArrayList<Street>>() {};
-
         railWear = (ImageView)rootView.findViewById(R.id.ivRailWear);
         gaugeMonitor = (ImageView)rootView.findViewById(R.id.ivGaugeMonitor);
         vibration = (ImageView)rootView.findViewById(R.id.vibration);
@@ -179,7 +178,6 @@ public class MapFragment extends Fragment implements ClusterListener, MapObjectT
             public void onCancelled(DatabaseError databaseError) {
             }
         };
-        userReference.addListenerForSingleValueEvent(valueListener);
         ValueEventListener valueListener1 = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -231,6 +229,7 @@ public class MapFragment extends Fragment implements ClusterListener, MapObjectT
                     break;
                 default: imageProvider = ImageProvider.fromResource(
                         activity, R.drawable.sensor_red);}
+
                 PlacemarkMapObject mapObject = clusterizedCollection.addPlacemark(new Point(Double.parseDouble(mark.getSens_lat()), Double.parseDouble(mark.getSens_long())));
                 mapObject.setUserData(mark);
                     mapObject.setIcon(imageProvider);

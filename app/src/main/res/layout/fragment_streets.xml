@@ -66,7 +66,7 @@
                 android:id="@+id/chargeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="87%"
+                android:text="3-4.2В"
                 android:layout_gravity="center"
 
                 android:textColor="@color/black"
@@ -98,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content"
-                    android:text="100"
+                    android:text="-50 - 145дБм"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
             </LinearLayout>
