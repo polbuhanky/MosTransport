@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="mcv_pager" type="id" />
+    <item name="back_card" type="id"/>
+    <item name="text1" type="id"/>
+    <item name="point1" type="id"/>
+    <item name="for_web_container" type="id" />
+
+
+</resources>

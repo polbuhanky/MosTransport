@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="60dp">
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:gravity="left"
+        android:layout_marginStart="10dp"
+
+        android:textColor="#333333"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/krug"
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:layout_gravity="center"
+        android:layout_height="15dp"
+        android:src="@drawable/krug"/>
+
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/menu_top"
+        >
+        <item
+            android:id="@+id/SensorMap"
+            android:icon="@drawable/dmap"
+            android:title="Карта датчиков" />
+        <item
+            android:id="@+id/railWear"
+            android:icon="@drawable/drail"
+            android:title="Износ рельса" />
+        <item
+            android:id="@+id/gaugeMonitor"
+            android:icon="@drawable/drail2"
+            android:title="Монитор колеи" />
+        <item
+            android:id="@+id/vibration"
+            android:icon="@drawable/vibe"
+            android:title="Вибрация" />
+        <item
+            android:id="@+id/networkBreak"
+            android:icon="@drawable/dbreak"
+            android:title="Разрыв сети" />
+        <item
+            android:id="@+id/environmentMonitor"
+            android:icon="@drawable/denviron"
+            android:title="Монитор среды" />
+    </group>
+    <group
+        android:checkableBehavior="none">
+            <item
+                android:id="@+id/actionPlan"
+                android:icon="@drawable/dplanner"
+                android:title="План действий" />
+            <item
+                android:id="@+id/reportsAndGraphs"
+                android:icon="@drawable/dreports"
+                android:title="Отчёты и действий" />
+            <item
+                android:id="@+id/AdvancedOptions"
+                android:icon="@drawable/dadvanced"
+                android:title="Расширенные опции" />
+            <item
+                android:id="@+id/ContactsAndHelp"
+                android:icon="@drawable/dinfo"
+                android:title="Контакты и справка" />
+    </group>
+</menu>

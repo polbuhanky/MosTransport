@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activities.MainActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"
+        android:layout_gravity="top">
+        <ImageView
+            android:id="@+id/ham_icon"
+            android:clickable="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/hamburger_icon"
+            android:layout_gravity="left" />
+        <ImageView
+            android:id="@+id/backBTN"
+            android:clickable="true"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/back_toolbar"
+            app:tint="@color/white"
+            android:visibility="gone"
+            android:layout_gravity="left" />
+        <ImageView
+            android:id="@+id/imageToolBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/logo_mostrans"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/textViewToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingRight="40dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:text="None"
+            android:layout_gravity="center"/>
+        <ImageView
+            android:id="@+id/search_icon"
+            android:clickable="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/search"
+            android:layout_gravity="right"
+            app:tint="@color/white" />
+
+    </androidx.appcompat.widget.Toolbar>
+    <FrameLayout
+        android:id="@+id/big_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:itemIconTint="@color/ThemeGrey"
+        app:itemTextColor="@color/ThemeGrey"
+        android:background="@color/white"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu" />
+</androidx.drawerlayout.widget.DrawerLayout>

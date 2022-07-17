@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.yandex.mapkit.mapview.MapView
+        android:id="@+id/mapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bottomSheetContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_peekHeight="38dp"
+        app:layout_behavior="@string/bottom_sheet_behavior"
+        android:background="@drawable/bottom_sheet_background">
+
+        <View
+            android:id="@+id/close"
+            android:layout_width="64dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivRailWear"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/rail"
+            app:layout_constraintEnd_toStartOf="@id/ivGaugeMonitor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/close" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRailWear"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Износ рельса"
+            android:layout_marginTop="-8dp"
+
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@id/ivRailWear"
+            app:layout_constraintTop_toBottomOf="@id/ivRailWear" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivGaugeMonitor"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/rail2"
+            app:layout_constraintEnd_toStartOf="@id/vibration"
+            app:layout_constraintStart_toEndOf="@id/ivRailWear"
+            app:layout_constraintTop_toBottomOf="@id/close" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="-8dp"
+
+            android:text="Монитор колеи"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@id/ivGaugeMonitor"
+            app:layout_constraintTop_toBottomOf="@id/ivGaugeMonitor" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/vibration"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/vib"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivGaugeMonitor"
+            app:layout_constraintTop_toBottomOf="@id/close" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Вибрация"
+            android:layout_marginTop="-8dp"
+
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@id/vibration"
+            app:layout_constraintTop_toBottomOf="@id/vibration" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/networkBreak"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/break2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/actionPlan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvRailWear" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Разрыв сети"
+            android:layout_marginTop="-8dp"
+
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@id/networkBreak"
+            app:layout_constraintTop_toBottomOf="@id/networkBreak" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/actionPlan"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/planner"
+            app:layout_constraintBottom_toBottomOf="@id/networkBreak"
+            app:layout_constraintEnd_toStartOf="@id/environmentMonitor"
+            app:layout_constraintStart_toEndOf="@id/networkBreak"
+            app:layout_constraintTop_toTopOf="@id/networkBreak" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="План действий"
+            android:textColor="@color/black"
+            android:layout_marginTop="-8dp"
+
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@id/actionPlan"
+            app:layout_constraintTop_toBottomOf="@id/actionPlan" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/environmentMonitor"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/environ"
+            app:layout_constraintBottom_toBottomOf="@id/networkBreak"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/actionPlan"
+            app:layout_constraintTop_toTopOf="@id/networkBreak" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Монитор среды"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_marginTop="-8dp"
+
+            app:layout_constraintStart_toStartOf="@id/environmentMonitor"
+            app:layout_constraintTop_toBottomOf="@id/environmentMonitor"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

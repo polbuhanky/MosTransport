@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">MosTransport</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_drawable">Drawable</string>
+    <string name="hab">Хаб 7</string>
+
+    <string name="Izmaelovo">Измайловское ш.</string>
+
+    <string name="Iznos">износ рельса</string>
+    <string name="Vibr">вибрация</string>
+    <string name="Sreda">мониторинг среды</string>
+    <string name="Koleya">мониторинг колеи</string>
+    <string name="Seti">разрыв сети</string>
+
+    <string name="no">нет</string>
+    <string name="razriv">разрыв</string>
+
+    <string name="Xabs">Хабов 11</string>
+    <string name="Charge">Заряд 93%</string>
+    <string name="Signal">Сигнал 5/6</string>
+</resources>

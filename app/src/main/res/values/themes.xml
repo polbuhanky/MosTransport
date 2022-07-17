@@ -1,0 +1,136 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#D80512</item>
+        <item name="colorPrimaryDark">#D80512</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorHint">#FFE7E7E7</item>
+
+
+    </style>
+
+    <style name="OrangeButton" parent="@style/Widget.AppCompat.Button.Colored">
+
+        <item name="colorButtonNormal">#ff3445</item>
+        <item name="colorControlHighlight">#F7FF0031</item>
+    </style>
+    <style name="circleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="SearchViewStyle" parent="parent">
+        <item name="android:editTextColor">@color/ThemeGrey</item>
+    </style>
+
+    <style name="Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:background">@color/md_red_A400</item>
+    </style>
+
+    <style name="MyFloatingButton" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/pink</item>
+    </style>
+
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#FFD8D8</item>
+        <item name="colorControlActivated">#F7FFFFFF</item>
+    </style>
+
+    <style name="RegrSign" parent="@style/Widget.AppCompat.Button.Colored">
+
+        <item name="colorButtonNormal">#F3F3F3</item>
+        <item name="colorControlHighlight">#ff3445</item>
+    </style>
+
+    <style name="GreyButton" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">#E7E7E7</item>
+        <item name="colorControlHighlight">#ff3445</item>
+    </style>
+
+    <style name="Theme.App.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">#ff3445</item>
+        <item name="colorControlActivated">#ff3445</item>
+        <item name="colorControlHighlight">#ff3445</item>
+    </style>
+
+    <style name="AppTheme.FloatingAccentButtonOverlay">
+        <item name="colorAccent">#FA4526</item>
+        <item name="colorBackgroundFloating">#F86767</item>
+        <item name="colorControlHighlight">#F86767</item>
+        <item name="colorControlActivated">#F86767</item>
+    </style>
+
+    <!--designs for login and register-->
+    <style name="parent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ErrorText" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="loginParent" parent="parent">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/loginBkColor</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+    <style name="headerText" parent="parent">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="modifiedEditText" parent="parent">
+        <item name="android:backgroundTint">@color/primaryTextColor</item>
+    </style>
+
+    <style name="loginCard" parent="parent"></style>
+
+    <style name="linearParent" parent="parent">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="headerTextPrimary" parent="headerText">
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="MyRatingBar" parent="@android:style/Widget.DeviceDefault.RatingBar.Indicator">>
+        <item name="colorControlNormal">#454545</item>
+        <item name="colorControlActivated">#EDAD0B</item>
+        <item name="android:minHeight">10dp</item>
+
+        <item name="android:maxHeight">10dp</item>
+    </style>
+
+    <style name="viewParent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="loginButton" parent="viewParent">
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>
