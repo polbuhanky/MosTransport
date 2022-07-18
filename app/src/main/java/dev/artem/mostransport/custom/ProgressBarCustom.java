@@ -1,6 +1,7 @@
 package dev.artem.mostransport.custom;
 
 import android.app.Dialog;
+import android.content.res.ColorStateList;
 import android.util.Log;
 import android.widget.LinearLayout;
 
@@ -82,7 +83,7 @@ public class ProgressBarCustom {
         this.linersKoleya = linersKoleya;
     }
 
-    public void SetPrecent(String name, int percent){
+    public void SetPrecent(String name, int percent, int color){
         int fill = (int) Math.ceil(((double)percent / (double)MAXLEN));
 
         LinearLayout[] layout = null;
@@ -97,7 +98,6 @@ public class ProgressBarCustom {
             case "vibr":
                 layout = this.linersVibr;
                 this.percentVibr = percent;
-                resid = (R.drawable.stroke_yellow);
                 break;
             case "sred":
                 layout = this.linersSred;
@@ -116,6 +116,7 @@ public class ProgressBarCustom {
 
         for (int i = 0; i < fill; i++) {
             layout[i].setBackgroundResource(resid);
+            layout[i].setBackgroundTintList(ColorStateList.valueOf(color));
         }
     }
 

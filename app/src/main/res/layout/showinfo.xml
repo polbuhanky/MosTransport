@@ -93,10 +93,10 @@
                 android:layout_weight="5" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/colorStatus"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:background="@drawable/cell"
+                android:src="@drawable/cell"
                 />
 
             <Space
@@ -601,7 +601,7 @@
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/radioButton2"
+                            android:id="@+id/networkBreak1"
                             android:enabled="false"
                             android:layout_width="50dp"
                             android:layout_height="25dp"
@@ -616,7 +616,7 @@
                             android:textStyle="bold" />
 
                         <RadioButton
-                            android:id="@+id/radioButton"
+                            android:id="@+id/networkBreak2"
                             android:enabled="false"
                             android:layout_width="50dp"
                             android:layout_height="25dp"
@@ -675,8 +675,8 @@
                 <TextView
                     android:id="@+id/Xabs"
                     android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="12dp"
@@ -707,8 +707,8 @@
                 <TextView
                     android:id="@+id/voltPhoneTextView"
                     android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="12dp"
@@ -739,8 +739,8 @@
                 <TextView
                     android:id="@+id/rssiPhoneTextView"
                     android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="12dp"

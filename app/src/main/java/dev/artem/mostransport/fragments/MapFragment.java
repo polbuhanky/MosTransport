@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -18,6 +20,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -252,6 +256,9 @@ public class MapFragment extends Fragment implements ClusterListener, MapObjectT
 
     @Override
     public boolean onMapObjectTap(@NonNull MapObject mapObject, @NonNull Point point) {
+        RadioButton networkBreak1; // Переменная статуса разрыва сети
+        RadioButton networkBreak2; // Переменная статуса разрыва сети
+
         Mark mark1 = (Mark) mapObject.getUserData();
         Toast.makeText(getContext(), mark1.getSim_id(), Toast.LENGTH_SHORT ).show();
         Dialog dialog = new Dialog(getContext());
@@ -269,14 +276,40 @@ public class MapFragment extends Fragment implements ClusterListener, MapObjectT
             }
         });
         ProgressBarCustom progressBarCustom = new ProgressBarCustom(dialog);
-        progressBarCustom.SetPrecent("Iznos",100);
-        progressBarCustom.SetPrecent("Vibr",50);
-        progressBarCustom.SetPrecent("Sred",100);
-        progressBarCustom.SetPrecent("Koleya",100);
+        networkBreak1 = dialog.findViewById(R.id.networkBreak1);
+        networkBreak2 = dialog.findViewById(R.id.networkBreak2);
+
         ((TextView)dialog.findViewById(R.id.hub_textview)).setText("Хаб " +mark1.getId());
 
-
         Street street = allStreets.get(Integer.parseInt(mark1.getStreet_id()) -1);
+
+        // Определение цвета и заполненности шкалы вибрации по defect --->
+        int color = Color.YELLOW;
+        int vibr = 0;
+
+        switch (mark1.getDefect()){
+            case "1":
+                color = Color.GREEN;
+                vibr = 100;
+                break;
+            case "2":
+                color = Color.YELLOW;
+                vibr = 75;
+                break;
+            case "3":
+                color = Color.parseColor("#FF9800");
+                vibr = 50;
+                break;
+            case "4":
+                color = Color.RED;
+                vibr = 25;
+                break;
+        }
+        // Определение цвета и заполненности шкалы вибрации по defect ---<
+
+        ((ImageView)dialog.findViewById(R.id.colorStatus)).setImageTintList(ColorStateList.valueOf(color)); // Установка цвета для Статуса Хаба
+
+        // Подсчет заряда, кол-во хабов, и сигнала --->
         int hubsCount = 0;
         double minVoltPhone = Double.valueOf(mark1.getVolt_phone());
         double maxVoltPhone = 0;
@@ -292,10 +325,18 @@ public class MapFragment extends Fragment implements ClusterListener, MapObjectT
                 if (maxRssi < Double.valueOf(m.getRssi_phone())) maxRssi = Double.valueOf(m.getRssi_phone());
             }
         }
+        // Подсчет заряда, кол-во хабов, и сигнала ---<
+
         ((TextView)dialog.findViewById(R.id.Xabs)).setText("Хабов\n" + hubsCount);
         ((TextView)dialog.findViewById(R.id.voltPhoneTextView)).setText("Заряд\n" + minVoltPhone + "В\n" + maxVoltPhone + "В");
         ((TextView)dialog.findViewById(R.id.rssiPhoneTextView)).setText("Сигнал\n" + minRssi + "дБм\n" + maxRssi + "дБм");
         ((TextView)dialog.findViewById(R.id.streetTV)).setText(street.getStreet_type() + " " + street.getStreet_name());
+
+        progressBarCustom.SetPrecent("Iznos",100, Color.GREEN);
+        progressBarCustom.SetPrecent("Vibr",vibr, color);
+        progressBarCustom.SetPrecent("Sred",100, Color.GREEN);
+        progressBarCustom.SetPrecent("Koleya",100, Color.GREEN);
+
         dialog.show();
         return false;
     }
