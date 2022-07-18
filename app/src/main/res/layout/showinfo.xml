@@ -705,7 +705,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/voltPhoneTextView"
                     android:layout_width="60dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"
@@ -737,7 +737,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/signal_textview"
+                    android:id="@+id/rssiPhoneTextView"
                     android:layout_width="60dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"

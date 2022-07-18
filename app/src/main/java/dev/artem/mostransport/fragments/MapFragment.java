@@ -181,7 +181,7 @@ public class MapFragment extends Fragment implements ClusterListener, MapObjectT
         ValueEventListener valueListener1 = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-            allStreets.addAll(dataSnapshot.getValue(streetsGenericTypeIndicator));
+                allStreets.addAll(dataSnapshot.getValue(streetsGenericTypeIndicator));
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -230,11 +230,11 @@ public class MapFragment extends Fragment implements ClusterListener, MapObjectT
                 default: imageProvider = ImageProvider.fromResource(
                         activity, R.drawable.sensor_red);}
 
-                PlacemarkMapObject mapObject = clusterizedCollection.addPlacemark(new Point(Double.parseDouble(mark.getSens_lat()), Double.parseDouble(mark.getSens_long())));
-                mapObject.setUserData(mark);
-                    mapObject.setIcon(imageProvider);
-                    mapObject.addTapListener(this);
-    }
+            PlacemarkMapObject mapObject = clusterizedCollection.addPlacemark(new Point(Double.parseDouble(mark.getSens_lat()), Double.parseDouble(mark.getSens_long())));
+            mapObject.setUserData(mark);
+            mapObject.setIcon(imageProvider);
+            mapObject.addTapListener(this);
+        }
     }
     @Override
     public void onStop() {
@@ -278,10 +278,23 @@ public class MapFragment extends Fragment implements ClusterListener, MapObjectT
 
         Street street = allStreets.get(Integer.parseInt(mark1.getStreet_id()) -1);
         int hubsCount = 0;
+        double minVoltPhone = Double.valueOf(mark1.getVolt_phone());
+        double maxVoltPhone = 0;
+        double minRssi = Double.valueOf(mark1.getRssi_phone());
+        double maxRssi = 0;
+
         for (Mark m : allMarks){
-            if (mark1.getStreet_id().equals(m.getStreet_id())) hubsCount++;
+            if (mark1.getStreet_id().equals(m.getStreet_id())){
+                hubsCount++;
+                if (minVoltPhone > Double.valueOf(m.getVolt_phone())) minVoltPhone = Double.valueOf(m.getVolt_phone());
+                if (maxVoltPhone < Double.valueOf(m.getVolt_phone())) maxVoltPhone = Double.valueOf(m.getVolt_phone());
+                if (minRssi > Double.valueOf(m.getRssi_phone())) minRssi = Double.valueOf(m.getRssi_phone());
+                if (maxRssi < Double.valueOf(m.getRssi_phone())) maxRssi = Double.valueOf(m.getRssi_phone());
+            }
         }
         ((TextView)dialog.findViewById(R.id.Xabs)).setText("Хабов\n" + hubsCount);
+        ((TextView)dialog.findViewById(R.id.voltPhoneTextView)).setText("Заряд\n" + minVoltPhone + "В\n" + maxVoltPhone + "В");
+        ((TextView)dialog.findViewById(R.id.rssiPhoneTextView)).setText("Сигнал\n" + minRssi + "дБм\n" + maxRssi + "дБм");
         ((TextView)dialog.findViewById(R.id.streetTV)).setText(street.getStreet_type() + " " + street.getStreet_name());
         dialog.show();
         return false;
@@ -343,7 +356,7 @@ public class MapFragment extends Fragment implements ClusterListener, MapObjectT
 
 
 
-    }
+}
 
 
 
