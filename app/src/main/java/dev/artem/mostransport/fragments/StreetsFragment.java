@@ -95,8 +95,19 @@ public class StreetsFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<Mark> marks = dataSnapshot.getValue(genericTypeIndicator2);
 
+                double minVoltPhone = Double.valueOf(marks.get(0).getVolt_phone());
+                double maxVoltPhone = 0;
+                double minRssi = Double.valueOf(marks.get(0).getRssi_phone());
+                double maxRssi = 0;
+                for (Mark m : marks){
+                    if (minVoltPhone > Double.valueOf(m.getVolt_phone())) minVoltPhone = Double.valueOf(m.getVolt_phone());
+                    if (maxVoltPhone < Double.valueOf(m.getVolt_phone())) maxVoltPhone = Double.valueOf(m.getVolt_phone());
+                    if (minRssi > Double.valueOf(m.getRssi_phone())) minRssi = Double.valueOf(m.getRssi_phone());
+                    if (maxRssi < Double.valueOf(m.getRssi_phone())) maxRssi = Double.valueOf(m.getRssi_phone());
+                }
+                ((TextView)rootView.findViewById(R.id.chargeTV)).setText(minVoltPhone + "В\n" + maxVoltPhone + "В");
+                ((TextView)rootView.findViewById(R.id.signalTV)).setText(minRssi + "дБм\n" + maxRssi + "дБм");
                 ((TextView)rootView.findViewById(R.id.habsTV)).setText(String.valueOf(marks.size()));
-
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
