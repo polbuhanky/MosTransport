@@ -17,6 +17,8 @@
     <color name="ThemeGrey">#191919</color>
     <color name="text_gray">#6F6F6E</color>
 
+    <color name="black70">#70000000</color>
+
     <!--colors for modern ui-->
     <color name="whiteTextColor">#fff</color>
     <color name="primaryTextColor">#ff3445</color>

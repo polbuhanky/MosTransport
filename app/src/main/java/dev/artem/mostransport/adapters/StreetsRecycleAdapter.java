@@ -15,18 +15,22 @@ import java.util.List;
 
 import dev.artem.mostransport.R;
 import dev.artem.mostransport.activities.MainActivity;
+import dev.artem.mostransport.fragments.DialogFragment;
 import dev.artem.mostransport.fragments.MapFragment;
+import dev.artem.mostransport.models.Mark;
 import dev.artem.mostransport.models.Street;
 
 public class StreetsRecycleAdapter extends RecyclerView.Adapter<StreetsRecycleAdapter.ViewHolder> {
 
     private final LayoutInflater inflater;
     private final List<Street> streets;
+    private final List<Mark> marks;
     private final Context context;
 
-    public StreetsRecycleAdapter(Context context, List<Street> states) {
+    public StreetsRecycleAdapter(Context context, List<Street> states, List<Mark> marks) {
         this.context = context;
         this.streets = states;
+        this.marks = marks;
         this.inflater = LayoutInflater.from(context);
     }
 
@@ -46,6 +50,7 @@ public class StreetsRecycleAdapter extends RecyclerView.Adapter<StreetsRecycleAd
             public void onClick(View view) {
                 FragmentTransaction ft = ((MainActivity) context).getSupportFragmentManager().beginTransaction();
                 ft.add(R.id.big_container, MapFragment.newInstance(street.getLongitude(), street.getLatitude(), street));
+                ft.add(R.id.big_container, new DialogFragment(context, street, marks));
                 ft.commit();
             }
         });

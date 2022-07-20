@@ -13,34 +13,29 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:background="@color/red"
+        android:background="@color/md_red_A400"
         android:gravity="center">
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="5" />
+
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="center"
+            android:paddingLeft="65dp"
             android:textSize="17dp"
             android:textColor="@color/white"
             android:text="Планировщик задач" />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
         <Button
             android:id="@+id/button2"
-            android:layout_width="65sp"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_gravity="right|center_vertical"
             android:background="@null"
             android:textColor="@color/white"
             android:textSize="20dp"

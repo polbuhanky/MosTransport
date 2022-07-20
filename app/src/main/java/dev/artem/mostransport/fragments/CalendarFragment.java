@@ -221,9 +221,10 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<Street> streets = dataSnapshot.getValue(genericTypeIndicator);
+                ArrayList<Mark> marks = dataSnapshot.getValue(genericTypeIndicator2);
                 RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.streets_list);
                 recyclerView.addItemDecoration(new SpacesItemDecoration(20));
-                StreetsRecycleAdapter adapter = new StreetsRecycleAdapter(activity, streets);
+                StreetsRecycleAdapter adapter = new StreetsRecycleAdapter(activity, streets, marks);
                 recyclerView.setAdapter(adapter);
             }
 

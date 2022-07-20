@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -35,6 +36,8 @@ public class StreetsFragment extends Fragment {
     private DatabaseReference marksReference;
 
     private TextView textViewToolBar;
+
+    private ArrayList<Mark> marks;
 
     static GenericTypeIndicator<ArrayList<Street>> genericTypeIndicator;
     static GenericTypeIndicator<ArrayList<Mark>> genericTypeIndicator2;
@@ -76,24 +79,10 @@ public class StreetsFragment extends Fragment {
     }
 
     private void initListeners() {
-        ValueEventListener streetsValueListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Street> streets = dataSnapshot.getValue(genericTypeIndicator);
-                RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.streets_list);
-                recyclerView.addItemDecoration(new SpacesItemDecoration(20));
-                StreetsRecycleAdapter adapter = new StreetsRecycleAdapter(activity, streets);
-                recyclerView.setAdapter(adapter);
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        };
-        streetsReference.addListenerForSingleValueEvent(streetsValueListener);
         ValueEventListener marksValueListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Mark> marks = dataSnapshot.getValue(genericTypeIndicator2);
+                marks = dataSnapshot.getValue(genericTypeIndicator2);
 
                 double minVoltPhone = Double.valueOf(marks.get(0).getVolt_phone());
                 double maxVoltPhone = 0;
@@ -114,5 +103,20 @@ public class StreetsFragment extends Fragment {
             }
         };
         marksReference.addListenerForSingleValueEvent(marksValueListener);
+
+        ValueEventListener streetsValueListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Street> streets = dataSnapshot.getValue(genericTypeIndicator);
+                RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.streets_list);
+                recyclerView.addItemDecoration(new SpacesItemDecoration(20));
+                StreetsRecycleAdapter adapter = new StreetsRecycleAdapter(activity, streets, marks);
+                recyclerView.setAdapter(adapter);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        streetsReference.addListenerForSingleValueEvent(streetsValueListener);
     }
 }
