@@ -40,7 +40,7 @@
             <item
                 android:id="@+id/reportsAndGraphs"
                 android:icon="@drawable/dreports"
-                android:title="Отчёты и действий" />
+                android:title="Отчёты и графики" />
             <item
                 android:id="@+id/AdvancedOptions"
                 android:icon="@drawable/dadvanced"

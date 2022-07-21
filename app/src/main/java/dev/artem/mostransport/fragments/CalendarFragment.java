@@ -1,11 +1,15 @@
 package dev.artem.mostransport.fragments;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,7 +43,7 @@ import dev.artem.mostransport.models.Mark;
 import dev.artem.mostransport.models.Street;
 import dev.artem.mostransport.utils.SpacesItemDecoration;
 
-public class CalendarFragment extends Fragment implements CalendarAdapter.OnItemListener {
+public class CalendarFragment extends androidx.fragment.app.DialogFragment implements CalendarAdapter.OnItemListener {
     private DatabaseReference mDatabase;
     private DatabaseReference streetsReference;
     private DatabaseReference marksReference;
@@ -82,18 +86,30 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
     MainActivity activity;
     private View rootView;
 
+    public interface OnInputListener {
+        void sendInput(int time, int day1, int day2, LocalDate input1, LocalDate input2);
+    }
+
+    public OnInputListener onInputListener;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         this.activity = (MainActivity) activity;
+        setStyle(STYLE_NO_FRAME, android.R.style.Theme_Holo_Light);
+
+        try {
+            onInputListener = (OnInputListener) getTargetFragment();
+            Log.d(getClass().getSimpleName(), "onAttach: " + onInputListener );
+        } catch (ClassCastException e) {
+            Log.d(getClass().getSimpleName(), "onAttach: ClassCastException : " + e.getMessage());
+        }
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_calendar, null);
-
 
         Month.put(1, "Январь ЯНВ".split(" "));
         Month.put(2, "Февраль ФЕВР".split(" "));
@@ -177,7 +193,9 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                 FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.big_container, MapFragment.newInstance());
                 ft.commit();
-
+                if (getDialog() != null) {
+                    getDialog().dismiss();
+                }
             }
         });
         // ------------------------------------------------- Кнопка Выбора ------------------------------------------------->
@@ -196,12 +214,21 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                     // dateStart - переменная в которой хранится дата начало промежутка (LocalDate)
                     // dateEnd - переменная в которой хранится дата конца промежутка (LocalDate)
 
+                    if (onInputListener != null) {
+                        onInputListener.sendInput(Time, dayStartInt, dayEndInt, dateStart, dateEnd);
+                        Log.d("Calendar", "Информация отправлена");
+                    }
+                    if (getDialog() != null){
+                        getDialog().dismiss();
+                    }
+
                     System.out.println("[!] Выбранное время: " + Time + " | (День/Месяц/Год) C: " + dayStartInt + "/" + monthFirst + "/" + yearFirst + " До: " + dayEndInt + "/" + monthSecond + "/" + yearSecond);
                 } else {
                     Toast.makeText(activity, "Выберите Промежуток", Toast.LENGTH_LONG).show();
                 }
             }
         });
+        // ------------------------------------------------- Кнопка Выбора -------------------------------------------------<
         return rootView;
     }
 
@@ -293,8 +320,9 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
     }
 
 
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private String monthYearFromDate(LocalDate date) {
+    public String monthYearFromDate(LocalDate date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy");
         return Month.get(date.getMonthValue())[0] + " " + date.format(formatter);
     }

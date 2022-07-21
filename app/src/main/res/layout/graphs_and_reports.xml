@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@color/md_red_A400"
+        android:gravity="center">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingLeft="65dp"
+            android:textSize="17dp"
+            android:textColor="@color/white"
+            android:text="Графики и отчеты" />
+
+        <Button
+            android:id="@+id/closeBTN"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="right|center_vertical"
+            android:background="@null"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:text="X" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:srcCompat="@drawable/graphs" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/item_street_control_background"
+                        android:gravity="top"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:id="@+id/horizont1"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            app:layout_constraintTop_toTopOf="@id/linearLayout1">
+
+                            <TextView
+                                android:id="@+id/dataTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_weight="1"
+                                android:gravity="left"
+                                android:text="данные по событиям"
+                                android:textColor="@color/text_gray"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/moreData"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginRight="10dp"
+                                android:clickable="true"
+                                app:srcCompat="@drawable/arrow_down"
+                                app:tint="@color/gray" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewData"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginBottom="-10dp"
+                        android:background="@color/white"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Тип данных"
+                        android:textColor="@color/text_gray"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
+                        app:layout_constraintStart_toStartOf="@+id/linearLayout1" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/item_street_control_background"
+                        android:gravity="top"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toBottomOf="@id/linearLayout1">
+
+                        <LinearLayout
+                            android:id="@+id/horizont2"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            app:layout_constraintTop_toTopOf="@id/linearLayout2">
+
+                            <TextView
+                                android:id="@+id/parametrsMonitoring"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_weight="1"
+                                android:gravity="left"
+                                android:text="дефекты сварных швов"
+                                android:textColor="@color/text_gray"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/moreMonitoring"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginRight="10dp"
+                                android:clickable="true"
+                                app:srcCompat="@drawable/arrow_down"
+                                app:tint="@color/gray" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewMonitoring"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/parametrsMonitoringTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginBottom="-10dp"
+                        android:background="@color/white"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Параметры мониторинга"
+                        android:textColor="@color/text_gray"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                        app:layout_constraintStart_toStartOf="@+id/linearLayout2" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/item_street_control_background"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+
+                        <TextView
+                            android:id="@+id/periodTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="вторник / 31 мая / 2022"
+                            android:textColor="@color/text_gray"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/morePeriod"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="10dp"
+                            android:clickable="true"
+                            app:srcCompat="@drawable/arrow_down"
+                            app:tint="@color/gray" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/parametrsPeriodTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginBottom="-10dp"
+                        android:background="@color/white"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Период наблюдения"
+                        android:textColor="@color/text_gray"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+                        app:layout_constraintStart_toStartOf="@+id/linearLayout3" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/item_street_control_background"
+                        android:gravity="top"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toBottomOf="@id/linearLayout3">
+
+                        <LinearLayout
+                            android:id="@+id/horizont4"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            app:layout_constraintTop_toTopOf="@id/linearLayout4">
+
+                            <TextView
+                                android:id="@+id/selectPlotsTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_weight="1"
+                                android:gravity="left"
+                                android:text="Ивантеевская ул."
+                                android:textColor="@color/text_gray"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/morePlots"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginRight="10dp"
+                                android:clickable="true"
+                                app:srcCompat="@drawable/arrow_down"
+                                app:tint="@color/gray" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewPlots"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/parametrsPlotsTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginBottom="-10dp"
+                        android:background="@color/white"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Выбор участка"
+                        android:textColor="@color/text_gray"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+                        app:layout_constraintStart_toStartOf="@+id/linearLayout4" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/item_street_control_background"
+                        android:gravity="top"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toBottomOf="@id/linearLayout4">
+
+                        <LinearLayout
+                            android:id="@+id/horizont5"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            app:layout_constraintTop_toTopOf="@id/linearLayout5">
+
+                            <TextView
+                                android:id="@+id/StatusTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_weight="1"
+                                android:gravity="left"
+                                android:text="Не выбрано"
+                                android:textColor="@color/text_gray"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/moreStatus"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginRight="10dp"
+                                android:clickable="true"
+                                app:srcCompat="@drawable/arrow_down"
+                                app:tint="@color/gray" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/parametrsStatusTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginBottom="-10dp"
+                        android:background="@color/white"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Статус"
+                        android:textColor="@color/text_gray"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+                        app:layout_constraintStart_toStartOf="@+id/linearLayout5" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/buildBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/md_red_A400"
+            android:textSize="22dp"
+            android:text="ПОСТРОИТЬ" />
+
+
+    </LinearLayout>
+</LinearLayout>

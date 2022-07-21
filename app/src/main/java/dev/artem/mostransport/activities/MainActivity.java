@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,6 +48,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 import dev.artem.mostransport.fragments.CalendarFragment;
+import dev.artem.mostransport.fragments.DialogFragment;
+import dev.artem.mostransport.fragments.GraphsAndReportsFragment;
 import dev.artem.mostransport.fragments.MapFragment;
 import dev.artem.mostransport.R;
 import dev.artem.mostransport.fragments.StreetsFragment;
@@ -120,8 +123,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.gaugeMonitor:
             case R.id.environmentMonitor:
             case R.id.vibration:
-            case R.id.reportsAndGraphs:
                 openStreetFragment();
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.reportsAndGraphs:
+                GraphsAndReportsFragment graphsAndReportsFragment = new GraphsAndReportsFragment();
+                FragmentTransaction ft = myFragmentManager.beginTransaction();
+                ft.add(R.id.big_container, graphsAndReportsFragment);
+                ft.commit();
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             default:
