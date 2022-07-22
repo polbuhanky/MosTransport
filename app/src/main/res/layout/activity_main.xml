@@ -60,6 +60,16 @@
             android:layout_gravity="right"
             app:tint="@color/white" />
 
+        <ImageView
+            android:id="@+id/shieldComin"
+            android:clickable="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/shield_green"
+            android:layout_gravity="right"
+            app:tint="@color/white" />
+
     </androidx.appcompat.widget.Toolbar>
     <FrameLayout
         android:id="@+id/big_container"

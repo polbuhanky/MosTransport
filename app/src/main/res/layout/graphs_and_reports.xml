@@ -48,7 +48,7 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            app:srcCompat="@drawable/graphs" />
+            app:srcCompat="@null" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -363,17 +363,19 @@
                         app:layout_constraintStart_toStartOf="@+id/linearLayout5" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Button
+                    android:id="@+id/buildBTN"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="bottom"
+                    android:background="@color/md_red_A400"
+                    android:text="ПОСТРОИТЬ"
+                    android:textSize="22dp" />
+
             </LinearLayout>
         </ScrollView>
-
-        <Button
-            android:id="@+id/buildBTN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@color/md_red_A400"
-            android:textSize="22dp"
-            android:text="ПОСТРОИТЬ" />
 
 
     </LinearLayout>

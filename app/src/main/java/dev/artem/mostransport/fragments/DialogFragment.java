@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dev.artem.mostransport.R;
@@ -22,6 +23,10 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment impleme
     private final Context context;
     private Street street;
     private List<Mark> marks;
+    private ArrayList<Street> allStreets;
+    private ArrayList<Mark> allMarks;
+
+    String id_street = null;
 
     public DialogFragment(Context context, Street street, List<Mark> marks){
         this.context = context;
@@ -29,19 +34,29 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment impleme
         this.marks = marks;
     }
 
+    public DialogFragment(Context context, ArrayList<Street> allStreets, ArrayList<Mark> allMarks){
+        this.context = context;
+        this.allStreets = allStreets;
+        this.marks = allMarks;
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         View v = inflater.inflate(R.layout.shield_dialog, null);
 
         TextView streetName = (TextView)v.findViewById(R.id.streetName);
-        streetName.setText(street.getStreet_type() + " " + street.getStreet_name());
+        if (street != null) {
+            streetName.setText(street.getStreet_type() + " " + street.getStreet_name());
+            id_street = street.getId();
+        } else {
+            streetName.setText("Москва");
+        }
 
         TextView habsTV = (TextView)v.findViewById(R.id.habsTV);
         TextView chargeTV = (TextView)v.findViewById(R.id.chargeTV);
         TextView plotsTV = (TextView)v.findViewById(R.id.plotsTV);
 
         ImageView shieldImageView = (ImageView)v.findViewById(R.id.shieldImageView);
-        String id_street = street.getId();
 
         // Поиск максимального уровня defect, также подсчет заряда и кол-во хабов --->
         int maxDefect = 0;
@@ -51,11 +66,22 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment impleme
 
         for (Mark m : marks){
             if (m.getStreet_id() != null) {
-                if (m.getStreet_id().equals(id_street)) {
+                if (street != null) {
+                    if (m.getStreet_id().equals(id_street)) {
+                        maxDefect = Math.max(Integer.parseInt(m.getDefect()), maxDefect);
+                        hubsCount++;
+                        if (minVoltPhone > Double.valueOf(m.getVolt_phone()))
+                            minVoltPhone = Double.valueOf(m.getVolt_phone());
+                        if (maxVoltPhone < Double.valueOf(m.getVolt_phone()))
+                            maxVoltPhone = Double.valueOf(m.getVolt_phone());
+                    }
+                } else {
                     maxDefect = Math.max(Integer.parseInt(m.getDefect()), maxDefect);
                     hubsCount++;
-                    if (minVoltPhone > Double.valueOf(m.getVolt_phone())) minVoltPhone = Double.valueOf(m.getVolt_phone());
-                    if (maxVoltPhone < Double.valueOf(m.getVolt_phone())) maxVoltPhone = Double.valueOf(m.getVolt_phone());
+                    if (minVoltPhone > Double.valueOf(m.getVolt_phone()))
+                        minVoltPhone = Double.valueOf(m.getVolt_phone());
+                    if (maxVoltPhone < Double.valueOf(m.getVolt_phone()))
+                        maxVoltPhone = Double.valueOf(m.getVolt_phone());
                 }
             }
         }

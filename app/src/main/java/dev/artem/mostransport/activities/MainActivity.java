@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -63,7 +64,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DatabaseReference mDatabase;
     private DatabaseReference userReference;
     private DatabaseReference streetsReference;
+    private DatabaseReference marksReference;
     GenericTypeIndicator<ArrayList<Street>> genericTypeIndicator;
+    GenericTypeIndicator<ArrayList<Mark>> genericTypeIndicator2;
 
 
     private DrawerLayout drawerLayout;
@@ -78,6 +81,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Dialog dialog;
     private ArrayList<Street> data = new ArrayList<>();
     private ArrayList<Street> allStreets = new ArrayList<>();
+    private ArrayList<Mark> allMarks = new ArrayList<>();
+
+    private boolean firstCreate = false;
 
 
     @Override
@@ -93,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.add(R.id.big_container, mapFragment);
             fragmentTransaction.commit();
         }
+        firstCreate = true;
     }
 
     private void openStreetFragment() {
@@ -142,9 +149,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void init() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         streetsReference = mDatabase.child("streets");
+        marksReference = mDatabase.child("allMarks");
         userReference = mDatabase.child("userpass").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         genericTypeIndicator = new GenericTypeIndicator<ArrayList<Street>>() {
         };
+        genericTypeIndicator2 = new GenericTypeIndicator<ArrayList<Mark>>() {};
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navView);
@@ -189,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.findViewById(R.id.imageToolBar).setVisibility(View.VISIBLE);
                 toolbar.findViewById(R.id.search_icon).setVisibility(View.VISIBLE);
                 toolbar.findViewById(R.id.textViewToolBar).setVisibility(View.GONE);
+                toolbar.findViewById(R.id.shieldComin).setVisibility(View.VISIBLE);
                 fragmentTransaction.replace(R.id.big_container, mapFragment);
                 fragmentTransaction.commit();
             }
@@ -209,8 +219,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         };
 
+        ValueEventListener marksValueListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Mark> marks = dataSnapshot.getValue(genericTypeIndicator2);
+                if (marks != null) {
+                    allMarks.addAll(marks);
+                }
+                if (firstCreate){
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.add(R.id.big_container, new DialogFragment(MainActivity.this, allStreets, allMarks));
+                    ft.commit();
+                    firstCreate = false;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+
         userReference.addListenerForSingleValueEvent(userValueListener);
         streetsReference.addListenerForSingleValueEvent(streetValueListener);
+        marksReference.addListenerForSingleValueEvent(marksValueListener);
         toolbar.findViewById(R.id.ham_icon).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -244,6 +275,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 // Locate the EditText in listview_main.xml
                 searchView.setOnQueryTextListener(MainActivity.this);
                 dialog.show();
+            }
+        });
+
+        toolbar.findViewById(R.id.shieldComin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.add(R.id.big_container, new DialogFragment(MainActivity.this, allStreets, allMarks));
+                ft.commit();
             }
         });
     }
