@@ -83,7 +83,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<Street> allStreets = new ArrayList<>();
     private ArrayList<Mark> allMarks = new ArrayList<>();
 
-    private boolean firstCreate = false;
+    private DialogFragment dialogFragment;
+
+    private static boolean firstCreate = false;
 
 
     @Override
@@ -228,7 +230,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 if (firstCreate){
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.add(R.id.big_container, new DialogFragment(MainActivity.this, allStreets, allMarks));
+                    dialogFragment = new DialogFragment(MainActivity.this, allStreets, allMarks);
+                    ft.add(R.id.big_container, dialogFragment);
                     ft.commit();
                     firstCreate = false;
                 }
@@ -281,9 +284,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.findViewById(R.id.shieldComin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.add(R.id.big_container, new DialogFragment(MainActivity.this, allStreets, allMarks));
-                ft.commit();
+                if (dialogFragment == null) {
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    dialogFragment = new DialogFragment(MainActivity.this, allStreets, allMarks);
+                    ft.add(R.id.big_container, dialogFragment);
+                    ft.commit();
+                } else {
+                    dialogFragment.dismiss();
+                    dialogFragment = null;
+                }
             }
         });
     }

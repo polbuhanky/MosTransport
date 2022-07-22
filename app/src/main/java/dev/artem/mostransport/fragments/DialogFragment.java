@@ -118,6 +118,7 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment impleme
                 fragmentTransaction.replace(R.id.big_container, streetControlFragment);
                 fragmentTransaction.commit();
 
+
                 dismiss();
             }
         });

@@ -57,6 +57,7 @@ public class StreetsFragment extends Fragment {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
         toolbar.findViewById(R.id.imageToolBar).setVisibility(View.GONE);
         toolbar.findViewById(R.id.search_icon).setVisibility(View.GONE);
+        toolbar.findViewById(R.id.shieldComin).setVisibility(View.GONE);
         textViewToolBar = (TextView)toolbar.findViewById(R.id.textViewToolBar);
         textViewToolBar.setText("Список улиц");
         textViewToolBar.setVisibility(View.VISIBLE);
