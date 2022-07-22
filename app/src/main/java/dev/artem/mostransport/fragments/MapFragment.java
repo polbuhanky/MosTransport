@@ -128,6 +128,10 @@ public class MapFragment extends Fragment implements ClusterListener, MapObjectT
                 new Animation(Animation.Type.SMOOTH, 2),
                 null);
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.findViewById(R.id.imageToolBar).setVisibility(View.VISIBLE);
+        toolbar.findViewById(R.id.search_icon).setVisibility(View.VISIBLE);
+        toolbar.findViewById(R.id.textViewToolBar).setVisibility(View.GONE);
+        toolbar.findViewById(R.id.shieldComin).setVisibility(View.VISIBLE);
         toolbar.findViewById(R.id.ham_icon).setVisibility(View.VISIBLE);
         toolbar.findViewById(R.id.backBTN).setVisibility(View.GONE);
         toolbar.setVisibility(View.VISIBLE);
